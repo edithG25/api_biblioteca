@@ -1,4 +1,5 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Prestamo } from './../../prestamo/entities/prestamo.entity';
+import { Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 export class Usuario {
   @PrimaryGeneratedColumn()
@@ -7,4 +8,6 @@ export class Usuario {
   nombre: string;
   @Column()
   correo: string;
+  @OneToMany(() => Prestamo, (prestamo) => prestamo.usuarioId)
+  prestamos: Prestamo[];
 }

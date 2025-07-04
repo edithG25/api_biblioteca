@@ -7,10 +7,10 @@ export class Prestamo {
   id: number;
   @Column()
   fechaPrestamo: Date;
-  @Column()
+  @Column({ nullable: true })
   fechaDevolucion: Date;
   @ManyToOne(() => Libro, (libro) => libro.prestamos)
-  libroId: number;
+  libroId: Libro;
   @ManyToOne(() => Usuario, (usuario) => usuario.prestamos)
-  usuarioId: number;
+  usuarioId: Usuario;
 }
