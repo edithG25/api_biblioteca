@@ -38,14 +38,14 @@ export class PrestamoService {
 
   findAll() {
     return this.prestamoRepository.find({
-      relations: ['libro', 'usuario'], // Assuming these are the relations you want to include
+      relations: ['libroId', 'usuarioId'], // Assuming these are the relations you want to include
     });
   }
 
   findOne(id: number) {
     return this.prestamoRepository.findOne({
       where: { id },
-      relations: ['libro', 'usuario'], // Assuming these are the relations you want to include
+      relations: ['libroId', 'usuarioId'], // Assuming these are the relations you want to include
     });
   }
 

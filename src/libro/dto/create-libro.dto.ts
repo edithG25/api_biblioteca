@@ -1,8 +1,10 @@
-import { IsISBN, IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateLibroDto {
   @IsNotEmpty()
   titulo: string;
-  @IsISBN()
+  @IsNumber()
   isbn: string;
+  @IsNumber()
+  autorId: number; // Assuming autorId is a foreign key
 }

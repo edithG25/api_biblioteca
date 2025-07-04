@@ -4,16 +4,27 @@ import { UpdateLibroDto } from './dto/update-libro.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Libro } from './entities/libro.entity';
 import { Repository } from 'typeorm';
+import { Autor } from 'src/autor/entities/autor.entity';
 
 @Injectable()
 export class LibroService {
   constructor(
     @InjectRepository(Libro)
-    private libroRepositoy: Repository<Libro>, // Assuming Libro is the entity class
+    private libroRepositoy: Repository<Libro>,
+    @InjectRepository(Autor)
+    private autorRepository: Repository<Autor>, // Assuming Libro is the entity class
   ) {}
 
-  create(data: CreateLibroDto) {
-    const libro = this.libroRepositoy.create(data);
+  async create(dto: CreateLibroDto) {
+    const autor = await this.autorRepository.findOne({
+      where: { id: dto.autorId },
+    });
+    if (!autor) throw new NotFoundException('Autor no encontrado');
+    const libro = this.libroRepositoy.create({
+      titulo: dto.titulo,
+      isbn: dto.isbn,
+      autor: autor, // Assuming autor is a relation in Libro entity
+    });
     return this.libroRepositoy.save(libro);
   }
 

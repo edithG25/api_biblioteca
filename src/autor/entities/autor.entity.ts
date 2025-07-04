@@ -1,6 +1,7 @@
 import { Libro } from 'src/libro/entities/libro.entity';
-import { Column, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 export class Autor {
   @PrimaryGeneratedColumn()
   id: number;

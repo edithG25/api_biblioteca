@@ -1,7 +1,14 @@
 import { Autor } from 'src/autor/entities/autor.entity';
 import { Prestamo } from 'src/prestamo/entities/prestamo.entity';
-import { Column, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
+@Entity()
 export class Libro {
   @PrimaryGeneratedColumn()
   id: number;
